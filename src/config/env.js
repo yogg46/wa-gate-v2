@@ -4,7 +4,7 @@ const Joi = require('joi');
 const envSchema = Joi.object({
   NODE_ENV: Joi.string().valid('development', 'production', 'test').default('development'),
   PORT: Joi.number().default(3000),
-  HOST: Joi.string().default('0.0.0.0'),
+  HOST: Joi.string().default('127.0.0.1'),
   
   LARAVEL_API_KEY: Joi.string().min(32).required(),
   SESSION_SECRET: Joi.string().min(16).required(),

@@ -54,7 +54,7 @@ app.get('/health', (req, res) => {
 });
 
 // Routes
-routes(app);
+routes(app); // Pastikan ini memanggil fungsi dengan argumen 'app'
 
 // 404 handler
 app.use((req, res) => {

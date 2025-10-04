@@ -20,7 +20,7 @@ const customFormat = winston.format.combine(
 
 // Create logger instance
 const logger = winston.createLogger({
-  level: config.logging.level,
+  level: config.logging.level || 'info',
   format: customFormat,
   transports: [
     // File transport with rotation
@@ -28,19 +28,19 @@ const logger = winston.createLogger({
       dirname: logDir,
       filename: 'gateway-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
-      maxSize: config.logging.maxSize,
-      maxFiles: config.logging.maxFiles,
+      maxSize: config.logging.maxSize || '20m',
+      maxFiles: config.logging.maxFiles || '14d',
       zippedArchive: true
     }),
-    
+
     // Error file
     new DailyRotateFile({
       dirname: logDir,
       filename: 'error-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
       level: 'error',
-      maxSize: config.logging.maxSize,
-      maxFiles: config.logging.maxFiles
+      maxSize: config.logging.maxSize || '20m',
+      maxFiles: config.logging.maxFiles || '14d'
     })
   ]
 });
